@@ -7,12 +7,11 @@ const cors = require("cors");
 
 const sequelize = require("./Config/db");
 
-const User = require("./models/User");
-const Course = require("./models/Course");
-const Attendance = require("./models/Attendance");
-const Enrollment = require("./models/Enrollment");
+const { User, Course, Attendance, Enrollment } = require("./models");
 
 const graphqlHandler = require("./graphql");
+
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 const server = http.createServer(app);
