@@ -1,27 +1,25 @@
-const { DataTypes } = require("sequelize");
-const sequelize = require("../Config/db");
+const mongoose = require("mongoose");
 
-const Course = sequelize.define("Course", {
-
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true
+const courseSchema = new mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true
   },
-
   courseName: {
-    type: DataTypes.STRING,
-    allowNull: false
+    type: String,
+    required: true
   },
-
   courseCode: {
-    type: DataTypes.STRING
+    type: String
   },
-
   teacherName: {
-    type: DataTypes.STRING
+    type: String
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
   }
-
 });
 
-module.exports = Course;
+module.exports = mongoose.model("Course", courseSchema);

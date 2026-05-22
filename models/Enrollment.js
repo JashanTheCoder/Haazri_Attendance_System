@@ -1,14 +1,20 @@
-const { DataTypes } = require("sequelize");
-const sequelize = require("../Config/db");
+const mongoose = require("mongoose");
 
-const Enrollment = sequelize.define("Enrollment", {
-
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true
+const enrollmentSchema = new mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true
+  },
+  courseId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Course",
+    required: true
+  },
+  enrolledAt: {
+    type: Date,
+    default: Date.now
   }
-
 });
 
-module.exports = Enrollment;
+module.exports = mongoose.model("Enrollment", enrollmentSchema);
